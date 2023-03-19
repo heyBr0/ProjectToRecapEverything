@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import toast, { Toaster } from "react-hot-toast";
 interface user {
   _id: string;
   userName: string;
@@ -10,79 +10,54 @@ const UsersPage = () => {
   const [users, setUsers] = useState<user[]>([]);
 
   const getAllUsers = (): void => {
-    fetch("http://localhost:4000/users/")
-      .then((res: Response) => res.json())
+    fetch("http://localhost:4000/users")
+      .then((res: Response) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
       .then((result) => {
         if (result.success) {
           setUsers(result.data);
         } else {
           console.log(result.message);
         }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   };
 
-
   const createUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     const formData = new FormData(e.currentTarget);
-  
+    const newUser = {
+      userName: formData.get("userName"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
     try {
-      const response = await fetch("/users", {
+      const response = await fetch("http://localhost:4000/users", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
       });
-  
+
       const data = await response.json();
       if (data.success) {
         console.log(data.message);
       } else {
-        console.log(data.message);
+        toast.error(JSON.stringify(data.message));
       }
     } catch (error) {
       console.error(error);
     }
   };
-  
-
-
-/*   const createUser = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const data = new FormData(e.currentTarget);
-
-    try {
-      const response = await fetch("http://localhost:4000/users/", {
-        method: "POST",
-        body: data,
-      });
-      const result = await response.json();
-
-      console.log(result);
-    } catch (error) {
-      console.error(error);
-    }
-  }; */
-
-  /*    const createUser = (e: any) => {
-    e.preventDefault();
-
-    const data = new FormData(e.target);
-
-    fetch("http://localhost:4000/users/", {
-      method: "POST",
-      body: data,
-    
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {
-          console.log(result.message);
-        } else {
-          console.log(result.message);
-        }
-      });
-  };  */
 
   return (
     <div>
@@ -111,6 +86,7 @@ const UsersPage = () => {
           </ul>
         ))}
       </div>
+      <Toaster position="top-center" />
     </div>
   );
 };
