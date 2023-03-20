@@ -7,7 +7,8 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Reducer from "./components/Reducer";
 import { PostsList } from "./features/posts/PostsList";
-import AddPostForm from "./features/posts/AddPostForm";
+import { FetchQuery } from "./components/FetchQuery";
+import { FetchImages } from "./components/FetchImages";
 function App() {
   return (
     <div className="App">
@@ -18,8 +19,9 @@ function App() {
         <Route path="/users" element={<UsersPage />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/reducer" element={<Reducer />} />
-        <Route path="/posts" element={<PostsList />} />
-        <Route path="/form" element={<AddPostForm />} />
+        <Route path="/posts" element={<PostsList />} />      
+        <Route path="/images" element={<FetchImages />} />
+        <Route path="/fetchquery" element={<FetchQuery />} />
       </Routes>
     </div>
   );

@@ -11,7 +11,8 @@ const Home = () => {
             <NavLink to="/users">Users</NavLink>
             <NavLink to="/reducer">Reducer</NavLink>
             <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/form">Form</NavLink>
+            <NavLink to="/images">Images Fetch</NavLink>
+            <NavLink to="/fetchquery">Fetch Query</NavLink>
         </div>
     </div>
   )

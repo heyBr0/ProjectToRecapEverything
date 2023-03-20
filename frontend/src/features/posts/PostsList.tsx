@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
+import AddPostForm from "./AddPostForm";
 import {selectAllPosts} from "./postsSlice"
+
 
 type Post = {
   id: string;
@@ -22,6 +24,7 @@ export const PostsList = () => {
   ));
   return (
     <div>   
+      <AddPostForm />
       {renderedPosts}
     </div>
   );
