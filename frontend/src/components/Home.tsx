@@ -13,6 +13,7 @@ const Home = () => {
             <NavLink to="/posts">Posts</NavLink>
             <NavLink to="/images">Images Fetch</NavLink>
             <NavLink to="/fetchquery">Fetch Query</NavLink>
+            <NavLink to="/jsprep">JSprep</NavLink>
         </div>
     </div>
   )

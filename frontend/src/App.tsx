@@ -9,6 +9,7 @@ import Reducer from "./components/Reducer";
 import { PostsList } from "./features/posts/PostsList";
 import { FetchQuery } from "./components/FetchQuery";
 import { FetchImages } from "./components/FetchImages";
+import JSprep from "./components/JSprep";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         <Route path="/posts" element={<PostsList />} />      
         <Route path="/images" element={<FetchImages />} />
         <Route path="/fetchquery" element={<FetchQuery />} />
+        <Route path="/jsprep" element={<JSprep />} />
       </Routes>
     </div>
   );
