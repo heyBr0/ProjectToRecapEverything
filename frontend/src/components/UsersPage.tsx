@@ -10,7 +10,7 @@ const UsersPage = () => {
   const [users, setUsers] = useState<user[]>([]);
 
   const getAllUsers = (): void => {
-    fetch("http://localhost:4000/users")
+    fetch("http://127.0.0.1:4000/users")
       .then((res: Response) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
